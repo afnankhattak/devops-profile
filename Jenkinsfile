@@ -6,9 +6,7 @@ pipeline {
   stages {
     stage('Build') {
 			steps {
-				
 					sh 'docker build -t afnan39/profile-app:v1.0.2 .'
-				
 			} 
 		}
     stage('Test') {
@@ -23,7 +21,7 @@ pipeline {
 			steps{
 				script {
 					docker.withRegistry( '', registryCredential ) {
-						sh 'docker push afnan39/tprofile-app:v1.0.2'
+						sh 'docker push afnan39/profile-app:v1.0.2'
 					} 
 				}
 			} 
