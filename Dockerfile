@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM --platform=linux/amd64 nginx:alpine
 COPY . /usr/share/nginx/html
 WORKDIR /usr/share/nginx/html
 RUN chown -R nginx:nginx *
