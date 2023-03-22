@@ -6,12 +6,12 @@ pipeline {
   stages {
     stage('Build') {
 			steps {
-					sh 'docker build -t afnan39/profile-app .'
+					sh 'docker build -t afnan39/profile-app:v1.0.3 .'
 			} 
 		}
     stage('Test') {
       steps {
-				sh 'docker container run --rm -p 89:89 --name node1 -d afnan39/profile-app' 
+				sh 'docker container run --rm -p 89:89 --name node1 -d afnan39/profile-app:v1.0.3' 
 				sh 'sleep 5'
 				sh 'curl -I http://localhost:89'
 			
