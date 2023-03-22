@@ -26,15 +26,13 @@ pipeline {
 				}
 			} 
 		}
-
-
-
     stage('Trigger ManifestUpdate') {
+		    steps{
                 echo "triggering profile-app-production"
                 build job: 'profile-app-production', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+
+			}
         }
-
-
 
 		
 	}
