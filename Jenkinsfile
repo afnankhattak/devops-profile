@@ -11,9 +11,9 @@ pipeline {
 		}
     stage('Test') {
       steps {
-				sh 'docker container run --rm -p 89:89 --name node1 -d afnan39/profile-app:v1.0.3' 
+				sh 'docker container run --rm -p 81:81 --name node1 -d afnan39/profile-app:v1.0.3' 
 				sh 'sleep 5'
-				sh 'curl -I http://localhost:89'
+				sh 'curl -I http://localhost'
 			
 		} 
 	}
@@ -21,19 +21,17 @@ pipeline {
 			steps{
 				script {
 					docker.withRegistry( '', registryCredential ) {
-						sh 'docker push afnan39/profile-app:${env.BUILD_NUMBER}'
+						sh 'docker push afnan39/profile-app:v1.0.3'
 					} 
 				}
 			} 
 		}
-    stage('Trigger ManifestUpdate') {
-		    steps{
-                echo "triggering profile-app-production"
-                build job: 'profile-app-production', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
 
-			}
-        }
 
-		
+	stage('Clean') {
+      steps{
+        sh "docker rmi ${imageId}"
+      }
+    }	
 	}
 }
