@@ -21,7 +21,7 @@ pipeline {
 			steps{
 				script {
 					docker.withRegistry( '', registryCredential ) {
-						sh 'docker push afnan39/profile-app:${env.BUILD_NUMBER}'
+						sh 'docker push afnan39/profile-app:$env.BUILD_NUMBER'
 					} 
 				}
 			} 
