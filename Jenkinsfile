@@ -11,9 +11,9 @@ pipeline {
 		}
     stage('Test') {
       steps {
-				sh 'docker container run --rm -p 83:83 --name profile-app -d afnan39/profile-app:v1.0.$BUILD_NUMBER' 
+				sh 'docker container run --rm -p 80:80 --name profile-app -d afnan39/profile-app:v1.0.$BUILD_NUMBER' 
 				sh 'sleep 5'
-				sh 'curl -I http://localhost:83'
+				sh 'curl -I http://localhost:80'
 			
 		} 
 	}
